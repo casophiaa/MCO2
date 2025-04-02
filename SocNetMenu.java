@@ -23,14 +23,14 @@ public class SocNetMenu{
                 case 1:
                     System.out.print("Enter the person ID: ");
                     int personId = scanner.nextInt();
-                    socialNetwork.displayFriendList(personId);
+                    socialNetwork.showFriendList(personId);
                     break;
                 case 2:
                     System.out.print("Enter the first person ID: ");
                     int person1 = scanner.nextInt();
                     System.out.print("Enter the second person ID: ");
                     int person2 = scanner.nextInt();
-                    socialNetwork.displayConnections(person1, person2);
+                    socialNetwork.dispConnection(person1, person2);
                     break;
                 case 3:
                     System.out.println("Exiting the program...");
