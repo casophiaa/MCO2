@@ -5,32 +5,26 @@ import java.util.Scanner;
 public class FileReader {
     private Graph graph;
 
-    // Constructor initializing the graph
     public FileReader() {
         graph = new Graph();
     }
 
-    // Method to load a graph from a file
     public Graph loadGraphFromFile(String filePath) {
         File file = new File(filePath);
 
-        // Check if file exists before proceeding
         if (!file.exists()) {
             System.out.println("File not found: " + filePath);
             return null;
         }
 
-        // Using try-with-resources to automatically close the scanner
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
 
-                // Skip empty lines or malformed lines
                 if (line.isEmpty()) continue;
 
                 String[] tokens = line.split("\\s+");
 
-                // Ensure line has exactly two elements to form an edge
                 if (tokens.length == 2) {
                     try {
                         int person1 = Integer.parseInt(tokens[0]);
@@ -46,7 +40,6 @@ public class FileReader {
             System.out.println("Graph loaded successfully!");
             return graph;
         } catch (FileNotFoundException e) {
-            // Handle unexpected file not found exception
             System.out.println("Error reading file: " + e.getMessage());
             return null;
         }

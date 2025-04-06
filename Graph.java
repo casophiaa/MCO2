@@ -8,18 +8,15 @@ public class Graph {
         adjacencyList = new HashMap<>();
     }
 
-    // Adds an undirected edge between source and destination
     public void addEdge(int source, int destination) {
         adjacencyList.computeIfAbsent(source, k -> new TreeSet<>()).add(destination);
         adjacencyList.computeIfAbsent(destination, k -> new TreeSet<>()).add(source);
     }
 
-    // Returns a set of friends (neighbors) for a person, or an empty set if none
     public TreeSet<Integer> getFriends(int personId) {
         return adjacencyList.getOrDefault(personId, new TreeSet<>());
     }
 
-    // Checks if there is a path between source and destination
     public boolean hasConnection(int source, int destination) {
         Set<Integer> visited = new HashSet<>();
         Queue<Integer> queue = new LinkedList<>();
@@ -42,7 +39,6 @@ public class Graph {
         return false;
     }
 
-    // Returns the path (if any) from source to destination
     public List<Integer> getConnectionPath(int source, int destination) {
         Map<Integer, Integer> parentMap = new HashMap<>();
         Queue<Integer> queue = new LinkedList<>();
@@ -57,7 +53,6 @@ public class Graph {
                 if (visited.add(neighbor)) {
                     parentMap.put(neighbor, current);
                     if (neighbor == destination) {
-                        // Reconstruct connection path
                         List<Integer> path = new ArrayList<>();
                         for (int node = destination; node != source; node = parentMap.get(node)) {
                             path.add(0, node);
